@@ -13,7 +13,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [userType] = useState('student');
-    const [loading, setLoading] = useState(false); // Loading state added
+    const [loading, setLoading] = useState(false);
     const { data: session } = useSession();
     const formRef = useRef();
     const router = useRouter();
@@ -21,12 +21,10 @@ const Login = () => {
     const handleShow = () => {
         setShowPassword(!showPassword);
     };
-    
-    console.log(session);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Set loading to true when form is submitted
+        setLoading(true);
 
         try {
             const result = await signIn("enrollment", {
@@ -35,8 +33,6 @@ const Login = () => {
                 password,
                 userType,
             });
-
-            console.log("result", result);
 
             if (result.ok) {
                 toast.success("You are now logged in", {
@@ -49,14 +45,12 @@ const Login = () => {
                 toast.error("Login Failed", {
                     style: { fontWeight: '900', color: 'black' },
                 });
-                console.log(result);
             }
         } catch (error) {
             toast.error('An error occurred');
-            console.error('Error:', error);
         }
 
-        setLoading(false); // Reset loading to false when process is complete
+        setLoading(false);
         setUsername("");
         setPassword("");
         formRef.current.reset();
@@ -65,30 +59,33 @@ const Login = () => {
     return (
         <div className='container mx-auto w-[100vw] flex justify-center items-center h-[100vh]'>
             <ToastContainer />
-            <div className="container h-[100vh] md:h-[90vh] max-w-lg bg-white mx-auto p-10 flex flex-col justify-center items-center gap-10 md:gap-7 border-2 border-black rounded-3xl">
+            <div className="container h-[90vh] max-w-lg bg-white mx-auto pt-0  md:pt-10 p-10 flex flex-col justify-center items-center md:border-2 gap-5 md:gap-5 md:border-black rounded-3xl">
                 <div className="logo">
                     <Image
-                        src=''
+                        src='/img/jgi.png'
                         alt="Arka Logo"
                         className="logo"
-                        width={34}
-                        height={34}
+                        width={60}
+                        height={60}
                     />
                 </div>
-                <div className="locationLogo">
-                    <Image
-                        src=''
+                <div className="locationLogo cover md:h-20 w-20 bg-center">
+                    <video
+                        src='/img/location.mp4'
                         alt="Arka Logo"
-                        className="logo"
-                        width={24}
-                        height={24}
+                        className="logo rounded-full"
+                        width={80}
+                        height={80}
+                        autoPlay
+                        loop
+                        muted
                     />
                 </div>
                 <div className="heading">
                     <h1 className="head text-3xl">Arka Bus Tracking</h1>
                 </div>
                 <div className="form w-full">
-                    <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col justify-center items-center gap-10 md:gap-7'>
+                    <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col justify-center items-center gap-5 md:gap-5'>
                         <div className="first-input w-full relative">
                             <input
                                 type="text"
@@ -96,7 +93,7 @@ const Login = () => {
                                 placeholder='Username'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                disabled={loading} // Disable input when loading
+                                disabled={loading}
                                 required
                             />
                             <Image
@@ -114,7 +111,7 @@ const Login = () => {
                                 placeholder='Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                disabled={loading} // Disable input when loading
+                                disabled={loading}
                                 required
                             />
                             <Image
@@ -130,9 +127,9 @@ const Login = () => {
                             <button
                                 type="submit"
                                 className="submit bg-slate-800 text-white w-full p-4 rounded-3xl"
-                                disabled={loading} // Disable button when loading
+                                disabled={loading}
                             >
-                                {loading ? "Logging in..." : "Login"} {/* Show loading text */}
+                                {loading ? "Logging in..." : "Login"}
                             </button>
                         </div>
                         <div className="forgetPass w-full text-black flex flex-row justify-between">
@@ -140,13 +137,15 @@ const Login = () => {
                             <Link href="/otplogin">Sign in using OTP</Link>
                         </div>
                         <div className="gif">
-                            <Image
-                                src='/path-to-your-gif.gif'
+                            <video
+                                src='/img/gifbus.mp4'
                                 alt="gif-bottom"
                                 className="git-btm"
-                                width={50}
-                                height={50}
-                                unoptimized
+                                width={200}
+                                height={200}
+                                autoPlay
+                                loop
+                                muted
                             />
                         </div>
                     </form>

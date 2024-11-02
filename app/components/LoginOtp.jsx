@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 const LoginOtp = () => {
   
@@ -32,7 +33,7 @@ const LoginOtp = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://bus-arka-server.vercel.app/StudentLoginOtp", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_IP}/StudentLoginOtp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, userType, otp, systemOtp }),
@@ -115,12 +116,34 @@ const LoginOtp = () => {
         <>
             <div className='container mx-auto w-[100vw] flex justify-center items-center h-[100vh]'>
                 <ToastContainer />
-                <div className="container h-[100vh] md:h-[90vh] max-w-lg bg-white mx-auto p-10 flex flex-col justify-center items-center gap-10 md:gap-7 border-2 border-black rounded-3xl">
+                
+                <div className="container h-[90vh] max-w-lg bg-white mx-auto md:pt-10 pt-0 p-10 flex flex-col justify-center items-center gap-5 md:gap-7 md:border-2 border-black rounded-3xl">
+                <div className="logo">
+                    <Image
+                        src='/img/jgi.png'
+                        alt="Arka Logo"
+                        className="logo"
+                        width={60}
+                        height={60}
+                    />
+                </div>
+                <div className="locationLogo cover md:h-20 w-20 bg-center">
+                    <video
+                        src='/img/location.mp4'
+                        alt="Arka Logo"
+                        className="logo rounded-full"
+                        width={80}
+                        height={80}
+                        autoPlay
+                        loop
+                        muted
+                    />
+                </div>
                     <div className="heading">
                         <h1 className="text-3xl">Login with OTP</h1>
                     </div>
                     <div className="form w-full">
-                        <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col justify-center items-center gap-10 md:gap-7'>
+                        <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col justify-center items-center gap-7 md:gap-7'>
                             <div className="email-input w-full">
                                 <input
                                     type="email"
@@ -152,10 +175,22 @@ const LoginOtp = () => {
                                 </button>
                             </div>
                             <div className="direct w-full">
-                                <Link href={"/"}> 
+                                <Link href={"/Login"}> 
                                 <h4 className="credLog">Sign in using Enrollment</h4>
                                 </Link>
                             </div>
+                            <div className="gif">
+                            <video
+                                src='/img/gifbus.mp4'
+                                alt="gif-bottom"
+                                className="git-btm"
+                                width={200}
+                                height={200}
+                                autoPlay
+                                loop
+                                muted
+                            />
+                        </div>
                         </form>
                     </div>
                 </div>

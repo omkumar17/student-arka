@@ -13,7 +13,7 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch("https://bus-arka-server.vercel.app/StudentLogin", {
+          const res = await fetch(`${process.env.NEXT_PUBLIC_IP}/StudentLogin`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
