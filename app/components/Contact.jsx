@@ -1,5 +1,5 @@
 import React from 'react'
-import ContactChild from './ContactChild'
+import ContactChild from './contactChild'
 
 const Contact = () => {
   return (
