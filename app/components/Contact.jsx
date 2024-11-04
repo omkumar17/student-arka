@@ -3,7 +3,7 @@
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Suspense } from "react";
 import Loading from './Loading';
@@ -25,7 +25,7 @@ const Contact = () => {
             console.log("Authenticated");
             return;
         }
-        
+
         else if (status === 'authenticated') {
             // User is authenticated
             console.log("Authenticated");
@@ -40,17 +40,17 @@ const Contact = () => {
         return <Loading />; // Show loading while session status is still loading
     }
     // if (true) {
-        if (session?.user?.userType === 'student' && status==='authenticated') {
+    if (session?.user?.userType === 'student' && status === 'authenticated') {
         return (
-            <Suspense fallback={<Loading/>}>
-            <div>
-                <ToastContainer/>
-               <ContactChild/>
-            </div>
+            <Suspense fallback={<Loading />}>
+                <div>
+                    <ToastContainer />
+                    <ContactChild />
+                </div>
             </Suspense>
         )
     }
-    else{
+    else {
         return (
             <div className='pl-20 text-black dark:text-white'>
                 Access Denied please return to <Link href={'/Login'} className='text-blue-800 underline'>login page</Link>
