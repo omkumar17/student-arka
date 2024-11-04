@@ -38,7 +38,7 @@ const DashboardChild = () => {
 
   return (
     <div className="p-4 h-[90vh] container mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center text-white">Bus List</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center ">Bus List</h1>
       
       {/* Search Box */}
       <input
@@ -58,13 +58,13 @@ const DashboardChild = () => {
           {filteredBuses.length > 0 ? (
             filteredBuses.map((bus) => (
               <div key={bus.id} className="border p-4 rounded shadow ">
-                <h2 className="text-lg font-semibold  dark:text-white "><span className="bg-green-600 p-2 rounded-lg">Bus Number: {bus.bus_no}</span></h2><br/>
-                {/* <p className=' dark:text-white'><strong className=' dark:text-white'>ID:</strong> {bus.id}</p> */}
-                <p className=' dark:text-white capitalize my-5'><strong className=' dark:text-white mr-10 bg-blue-500 p-2 rounded-lg'>Destination:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.destination || 'Not set'}</span></p>
-                <p className=' dark:text-white capitalize my-5'><strong className=' dark:text-white mr-10 bg-blue-500 p-2 rounded-lg'>Seat Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.seatCount || 'Not set'}</span></p>
-                <p className=' dark:text-white capitalize my-5'><strong className=' dark:text-white mr-10 bg-blue-500 p-2 rounded-lg'>People Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.peopleCount || 'N/A'}</span></p>
-                <p className=' dark:text-white capitalize my-5'><strong className=' dark:text-white mr-10 bg-blue-500 p-2 rounded-lg'>Longitude:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.longitude || 'Not set'}</span></p>
-                <p className=' dark:text-white capitalize my-5'><strong className=' dark:text-white mr-10 bg-blue-500 p-2 rounded-lg'>Latitude</strong><span className="border-2 py-2 w-full px-10 rounded-lg">{bus.latitude || 'Not set'}</span></p>
+                <h2 className="text-lg font-semibold   "><span className="bg-green-600 p-2 rounded-lg">Bus Number: {bus.bus_no}</span></h2><br/>
+                {/* <p className=' '><strong className=' '>ID:</strong> {bus.id}</p> */}
+                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Destination:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.destination || 'Not set'}</span></p>
+                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Seat Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.seatCount || 'Not set'}</span></p>
+                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>People Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.peopleCount || 'N/A'}</span></p>
+                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Longitude:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.longitude || 'Not set'}</span></p>
+                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Latitude</strong><span className="border-2 py-2 w-full px-10 rounded-lg">{bus.latitude || 'Not set'}</span></p>
               </div>
             ))
           ) : (

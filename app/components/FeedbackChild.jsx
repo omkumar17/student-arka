@@ -92,10 +92,10 @@ const FeedbackChild = () => {
   return (
     <div className='h-[calc(100vh-3.5rem)] overflow-y-scroll pb-10 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700'>
       <ToastContainer /> {/* Toast container to display notifications */}
-      <h1 className="heading text-black dark:text-white text-2xl text-center my-10 font-bold">Feedbacks</h1>
+      <h1 className="heading   text-2xl text-center my-10 font-bold">Feedbacks</h1>
 
       {/* Add Feedback Form */}
-      <form onSubmit={handleSubmit} className="container mx-auto mb-10 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
+      <form onSubmit={handleSubmit} className="container mx-auto mb-10 p-4 border-2 rounded-lg">
         <h2 className="text-lg font-semibold mb-4">Add Feedback</h2>
         <div className="flex flex-col space-y-4">
           <textarea
@@ -105,13 +105,13 @@ const FeedbackChild = () => {
             placeholder="Enter your feedback..."
             required
             rows="4"
-            className="p-2 rounded border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+            className="p-2 rounded border bg-transparent border-gray-300 dark:border-gray-600  "
           />
           {/* Hidden input for UUID */}
           <input type="hidden" name="id" value={newFeedback.id} />
           <button
             type="submit"
-            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+            className="bg-blue-500  p-2 rounded hover:bg-blue-600"
           >
             Submit Feedback
           </button>
@@ -122,32 +122,32 @@ const FeedbackChild = () => {
       <div className="container mx-auto flex flex-col gap-5">
         {feedback && feedback.length > 0 ? (
           feedback.map((fb, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 border dark:border-gray-700">
+            <div key={index} className=" shadow-lg rounded-lg p-6 border dark:border-gray-700">
               {/* Feedback Details */}
               <div className="mb-4">
-                <p className="text-black dark:text-white"><strong>Date:</strong> {fb.date}</p>
-                <p className="text-black dark:text-white"><strong>Time:</strong> {fb.time}</p>
-                <p className="text-black dark:text-white"><strong>User:</strong> {fb.user}</p>
-                <p className="text-black dark:text-white"><strong>Feedback:</strong> {fb.text}</p>
+                <p className=" "><strong>Date:</strong> {fb.date}</p>
+                <p className=" "><strong>Time:</strong> {fb.time}</p>
+                <p className=" "><strong>User:</strong> {fb.user}</p>
+                <p className=" "><strong>Feedback:</strong> {fb.text}</p>
               </div>
 
               {/* Admin Reply */}
-              <div className="mt-4 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg">
-                <h3 className="font-semibold text-md text-black dark:text-white mb-2">Admin Reply</h3>
+              <div className="mt-4 p-4 rounded-lg bg-opacity-35 bg-slate-300">
+                <h3 className="font-semibold text-md   mb-2">Admin Reply</h3>
                 {fb.reply.reply ? (
                   <div>
-                    <p className="text-black dark:text-white"><strong>Date:</strong> {fb.reply.reply.date}</p>
-                    <p className="text-black dark:text-white"><strong>Time:</strong> {fb.reply.reply.time}</p>
-                    <p className="text-black dark:text-white"><strong>Reply:</strong> {fb.reply.reply.text}</p>
+                    <p className=" "><strong>Date:</strong> {fb.reply.reply.date}</p>
+                    <p className=" "><strong>Time:</strong> {fb.reply.reply.time}</p>
+                    <p className=" "><strong>Reply:</strong> {fb.reply.reply.text}</p>
                   </div>
                 ) : (
-                  <p className="text-gray-600 dark:text-gray-400">No reply</p>
+                  <p className="">No reply</p>
                 )}
               </div>
             </div>
           ))
         ) : (
-          <p className="text-center text-black dark:text-white">No feedback available</p>
+          <p className="text-center  ">No feedback available</p>
         )}
       </div>
     </div>

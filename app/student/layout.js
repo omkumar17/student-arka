@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         <SessionWrapper>
             <Navbar />
             <Suspense fallback={<Loading/>}>
-            <main className='relative  pt-14  border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black'>
+            <main className='relative  pt-14  border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black text-black dark:text-white'>
                 {children}
             </main>
             </Suspense>

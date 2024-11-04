@@ -51,7 +51,7 @@ const Fee = () => {
     }
     else{
         return (
-            <div className='pl-20 text-black dark:text-white'>
+            <div className='pl-20 '>
                 Access Denied please return to <Link href={'/Login'} className='text-blue-800 underline'>login page</Link>
             </div>
         )

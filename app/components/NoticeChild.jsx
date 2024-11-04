@@ -37,23 +37,23 @@ const NoticeChild = () => {
 
   return (
     <div className='h-[calc(100vh-3.5rem)] overflow-y-scroll pb-10 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700'>
-      <h1 className="heading text-black dark:text-white text-2xl text-center mt-10 font-bold">Notices</h1>
+      <h1 className="heading   text-2xl text-center mt-10 font-bold">Notices</h1>
       <h1 className="heading text-red-700 dark:text-red-600 text-lg  text-center mb-10 font-bold"> ( Please check the date for the notice )</h1>
 
       {/* Notices Section */}
       <div className="container mx-auto flex flex-col gap-5">
         {notices && notices.length > 0 ? (
           notices.map((notice, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 border dark:border-gray-700">
+            <div key={index} className=" shadow-lg rounded-lg p-6 border dark:border-gray-700">
               <div className="mb-4">
-                <p className="text-black dark:text-white text-lg my-4 border-2 py-10 px-5 rounded-lg border-blue-600"> {notice.content}</p>
-                <p className="text-black dark:text-white my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Created At:</strong> {notice.createdAt}</p>
-                <p className="text-black dark:text-white my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Time:</strong> {notice.createdTime}</p>
+                <p className="  text-lg my-4 border-2 py-10 px-5 rounded-lg border-blue-600"> {notice.content}</p>
+                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Created At:</strong> {notice.createdAt}</p>
+                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Time:</strong> {notice.createdTime}</p>
               </div>
             </div>
           ))
         ) : (
-          <p className="text-center text-black dark:text-white">No notices available</p>
+          <p className="text-center  ">No notices available</p>
         )}
       </div>
     </div>

@@ -47,7 +47,7 @@ const FeeChild = () => {
 
   return (
     <div className="p-4 h-[90vh] container mx-auto">
-      <h1 className="text-2xl font-bold mb-4 text-center text-white">Fee Details</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center ">Fee Details</h1>
 
       {/* Search Box */}
       
@@ -61,40 +61,40 @@ const FeeChild = () => {
           {filteredFees.length > 0 ? (
             filteredFees.map((fee) => (
               <div key={fee.id} className="border w-full md:min-w-md md:max-w-md  p-4 rounded shadow">
-                <h2 className="text-lg font-semibold dark:text-white">
+                <h2 className="text-lg font-semibold ">
                   <span className="bg-green-600 p-2 rounded-lg">Enrollment: {fee.enrollment}</span>
                 </h2>
                 <br />
-                <p className="dark:text-white my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">RFID:</strong>
+                <p className="my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">RFID:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.rfid || 'Not set'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Amount:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Amount:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.amount || 'N/A'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Transaction ID:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Transaction ID:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.transactionId || 'Not set'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Payment Method:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Payment Method:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.method || 'Not set'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Status:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Status:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.status || 'N/A'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Date:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Date:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.date || 'Not set'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Session:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Session:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.session || 'Not set'}</span>
                 </p>
-                <p className="dark:text-white capitalize my-5">
-                  <strong className="dark:text-white mr-10 bg-blue-500 p-2 rounded-lg">Branch:</strong>
+                <p className="capitalize my-5">
+                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Branch:</strong>
                   <span className="border-2 py-2 w-full px-10 rounded-lg uppercase">{fee.branch || 'Not set'}</span>
                 </p>
               </div>

@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         <SessionWrapper>
             
             <Suspense fallback={<Loading/>}>
-            <main className='relative border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black'>
+            <main className='relative border-t-2 sm:border-t-0 h-[calc(100vh)] '>
                 {children}
             </main>
             </Suspense>

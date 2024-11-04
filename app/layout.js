@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       <SessionWrapper>
         <body
 
-          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-black text-black dark:text-white`}
         >
 
           {children}
