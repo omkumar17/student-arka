@@ -10,10 +10,7 @@ import Loading from './Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import ContactChild from '@/app/components/ContactChild';
-
-
-
+import ContactChild from './contactChild';
 
 const Contact = () => {
 
