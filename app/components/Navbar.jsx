@@ -56,7 +56,7 @@ const Navbar = () => {
 
   if (status === 'authenticated') {
     return (
-      <header className="navbar antialiased w-full fixed z-40 border-b-4 dark:bg-slate-800 bg-white dark:border-white border-black">
+      <header className="navbar antialiased w-full fixed z-40 border-b-4 font-bold dark:bg-slate-800 dark:text-white text-black bg-white dark:border-white border-black">
         <nav className=" bg-opacity-15 border-gray-200 ">
           <div className="max-w-screen-xl flex flex-wrap items-center py-3 justify-between mx-auto">
             <Link href="/" className='order-2 md:order-1'>
