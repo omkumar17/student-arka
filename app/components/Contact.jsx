@@ -14,6 +14,7 @@ import ContactChild from './ContactChild';
 
 
 
+
 const Contact = () => {
 
     const router = useRouter();
@@ -45,7 +46,7 @@ const Contact = () => {
             <Suspense fallback={<Loading />}>
                 <div>
                     <ToastContainer />
-                    <ContactChild />
+                    <ContactChild/>
                 </div>
             </Suspense>
         )
