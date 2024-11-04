@@ -10,7 +10,7 @@ import Loading from './Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import ContactChild from './ContactChild';
+import ContactChild from '@/app/components/ContactChild';
 
 
 
