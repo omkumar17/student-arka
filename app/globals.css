@@ -8,10 +8,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  /* :root {
     --background: black;
     --foreground: white;
-  }
+  } */
 }
 
 body {
