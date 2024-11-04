@@ -34,7 +34,7 @@ const ContactChild = () => {
   useEffect(() => {
     console.log("contacts", contacts);
   }, [contacts]);
-  if (session && session?.user?.userType === `student`) {
+  
     return (
       <div className='h-[calc(100vh-3.5rem)] overflow-y-scroll pb-10 scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700'>
         <h1 className="heading text-black dark:text-white text-2xl text-center my-10 font-bold">Emergency Contacts</h1>
@@ -72,14 +72,7 @@ const ContactChild = () => {
         </div>
       </div>
     );
-  }
-  else {
-    return (
-      <div className='pl-20 text-black dark:text-white'>
-        Access Denied please return to <Link href={'/Login'} className='text-blue-800 underline'>login page</Link>
-      </div>
-    )
-  }
+ 
 };
 
 export default ContactChild;
