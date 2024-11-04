@@ -147,7 +147,7 @@ const FeedbackChild = () => {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 dark:text-gray-400">No feedback available</p>
+          <p className="text-center text-black dark:text-white">No feedback available</p>
         )}
       </div>
     </div>

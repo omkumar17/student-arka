@@ -37,14 +37,14 @@ const LogsChild = () => {
  
   return (
     <div>
-      <h1 className="heading text-black dark:text-white text-2xl text-center pt-10 my-10 font-bold">Your Bus Logs</h1>
+      <h1 className="heading text-black dark:text-white text-2xl text-center  my-10 font-bold">Your Bus Logs</h1>
 
       {/* General Information Section */}
       <div className="mb-5 container mx-auto text-lg text-black dark:text-white flex flex-col gap-3">
-        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>Enrollment : </strong><span className="bg-blue-600 p-2 rounded-lg mx-2 "> {logs.enrollment}</span></p>
-        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>RFID : </strong> <span className="bg-blue-600 p-2 rounded-lg mx-2 ">{logs.rfid}</span></p>
+        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>Enrollment : </strong><span className="bg-blue-600 p-2 rounded-lg mx-2 "> {logs.enrollment || session?.user?.enrollment}</span></p>
+        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>RFID : </strong> <span className="bg-blue-600 p-2 rounded-lg mx-2 ">{logs.rfid || 'no records'}</span></p>
         <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>Current Bus : </strong><span className="bg-blue-600 p-2 rounded-lg mx-2 "> {logs.current||'You are not in a bus'}</span></p>
-        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>Status : </strong> <span className="bg-blue-600 p-2 rounded-lg mx-2 ">{logs.status}</span></p>
+        <p className=''><strong className='text-blue-600 bg-white rounded-lg p-2 m-2'>Status : </strong> <span className="bg-blue-600 p-2 rounded-lg mx-2 ">{logs.status || 'no records'}</span></p>
       </div>
 
       {/* Table for Logs */}

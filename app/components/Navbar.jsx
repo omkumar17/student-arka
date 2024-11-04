@@ -3,16 +3,35 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import { usePathname } from 'next/navigation'; // Import usePathname hook
+import { signOut, useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 const Navbar = () => {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [isNavOpen, setIsNavOpen] = useState(false); // State to control mobile menu toggle
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const userMenuRef = useRef(null);
   const { data: session, status } = useSession();
-  const pathname = usePathname(); // Get current pathname
-  console.log("pathname",pathname);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      setIsDarkMode(true);
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const toggleUserMenu = () => {
     setIsUserMenuOpen(!isUserMenuOpen);
@@ -38,14 +57,21 @@ const Navbar = () => {
   if (status === 'authenticated') {
     return (
       <header className="navbar antialiased w-full fixed z-40">
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        <nav className="bg-black bg-opacity-15 border-gray-200 dark:bg-gray-900">
           <div className="max-w-screen-xl flex flex-wrap items-center py-3 justify-between mx-auto">
             <Link href="/" className='order-2 md:order-1'>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <span className="self-center text-2xl font-semibold whitespace-nowrap md:ml-0 dark:text-white">Arka BRT</span>
               </div>
             </Link>
-            <div className="relative flex items-center order-3 mr-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div className="relative flex items-center order-3 space-x-3 md:space-x-0 rtl:space-x-reverse">
+              {/* <button
+                onClick={toggleDarkMode}
+                className="p-2 bg-gray-200 dark:bg-gray-700 rounded-full"
+                aria-label="Toggle Dark Mode"
+              >
+                {isDarkMode ? '🌙' : '☀️'}
+              </button> */}
               <button
                 type="button"
                 onClick={toggleUserMenu}
@@ -59,37 +85,32 @@ const Navbar = () => {
               {isUserMenuOpen && (
                 <div ref={userMenuRef} className="z-50 absolute top-10 right-0 mt-2 w-48 bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700">
                   <div className="px-4 py-3">
-                    <span className="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                    <span className="block text-sm text-gray-500 truncate dark:text-gray-400">name@flowbite.com</span>
+                    <span className="block text-sm text-gray-900 dark:text-white capitalize">{session?.user?.firstName}</span>
+                    <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{session?.user?.email}</span>
                   </div>
-                  <ul className="py-2" aria-labelledby="user-menu-button">
+                  <ul className="py-2">
                     <li>
                       <Link href="#">
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Dashboard</div>
+                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Profile</div>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Settings</div>
+                      <Link href="/security/changePassword">
+                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Change Password</div>
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Earnings</div>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="#">
-                        <div className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200">Sign out</div>
-                      </Link>
+                      <div onClick={() => signOut()} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 cursor-pointer">
+                        Sign out
+                      </div>
                     </li>
                   </ul>
                 </div>
               )}
             </div>
-            <div className='relative md:order-2 pl-3'>
+            <div className="relative md:order-2 pl-3">
               <button
-                onClick={toggleNav} // Toggle mobile menu
+                onClick={toggleNav}
                 type="button"
                 className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-user"
@@ -104,50 +125,43 @@ const Navbar = () => {
                 <ul className="flex flex-col font-medium p-4 md:p-0 mt-3 border border-gray-100 bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                   <li>
                     <Link href="/student">
-                      <div className={`block py-2 px-3 ${pathname === '/student' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                      <div className={`block py-2 px-3 ${pathname === '/student' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Home
                       </div>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/bus-fee">
-                      <div className={`block py-2 px-3 ${pathname === 'student/busfee' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                    <Link href="/student/fee">
+                      <div className={`block py-2 px-3 ${pathname === '/student/fee' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Bus Fee
                       </div>
                     </Link>
                   </li>
                   <li>
                     <Link href="/student/logs">
-                      <div className={`block py-2 px-3 ${pathname === '/student/logs' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                      <div className={`block py-2 px-3 ${pathname === '/student/logs' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Logs
                       </div>
                     </Link>
                   </li>
                   <li>
                     <Link href="/student/contacts">
-                      <div className={`block py-2 px-3 ${pathname === '/student/contacts' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                      <div className={`block py-2 px-3 ${pathname === '/student/contacts' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Emergency Contacts
                       </div>
                     </Link>
                   </li>
                   <li>
                     <Link href="/student/feedback">
-                      <div className={`block py-2 px-3 ${pathname === '/student/feedback' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                      <div className={`block py-2 px-3 ${pathname === '/student/feedback' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Feedback
                       </div>
                     </Link>
                   </li>
                   <li>
                     <Link href="/student/notice">
-                      <div className={`block py-2 px-3 ${pathname === '/student/notice' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
+                      <div className={`block py-2 px-3 ${pathname === '/student/notice' ? 'text-blue-700' : 'text-black dark:text-white'} hover:bg-gray-100 rounded md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
                         Notice
-                      </div>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/about">
-                      <div className={`block py-2 px-3 ${pathname === '/about' ? ' text-blue-700 rounded' : 'text-black dark:text-white'} rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500`}>
-                        About
                       </div>
                     </Link>
                   </li>
@@ -160,7 +174,7 @@ const Navbar = () => {
     );
   }
 
-  return null; // Render nothing if not authenticated
+  return null;
 };
 
 export default Navbar;

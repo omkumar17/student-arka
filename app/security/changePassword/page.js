@@ -1,10 +1,10 @@
+import ChangePass from '@/app/components/ChangePass'
 import React from 'react'
-import Dashboard from '../components/Dashboard'
 
 const page = () => {
   return (
     <div>
-      <Dashboard/>
+      <ChangePass/>
     </div>
   )
 }

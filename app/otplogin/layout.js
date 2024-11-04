@@ -27,7 +27,7 @@ export default function Layout({ children }) {
 
             <body
 
-                className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
             >
 
 

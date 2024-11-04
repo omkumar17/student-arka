@@ -1,16 +1,19 @@
 import localFont from "next/font/local";
-import "../globals.css";
+import "../../globals.css";
 
-import SessionWrapper from "../components/SessionWrapper";
+import SessionWrapper from "../../components/SessionWrapper";
+
+import { Suspense } from "react";
+import Loading from "../../components/Loading";
 
 
 const geistSans = localFont({
-    src: "../fonts/GeistVF.woff",
+    src: "../../fonts/GeistVF.woff",
     variable: "--font-geist-sans",
     weight: "100 900",
 });
 const geistMono = localFont({
-    src: "../fonts/GeistMonoVF.woff",
+    src: "../../fonts/GeistMonoVF.woff",
     variable: "--font-geist-mono",
     weight: "100 900",
 });
@@ -24,15 +27,12 @@ export default function Layout({ children }) {
     return (
 
         <SessionWrapper>
-
-            <body
-
-                className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
-            >
-
-
+            
+            <Suspense fallback={<Loading/>}>
+            <main className='relative border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black'>
                 {children}
-            </body>
+            </main>
+            </Suspense>
 
         </SessionWrapper>
 

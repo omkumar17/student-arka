@@ -3,18 +3,17 @@
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation';
-import { useEffect,useState } from 'react';
+import { useEffect } from 'react';
 
 import { Suspense } from "react";
 import Loading from './Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import FeedbackChild from './FeedbackChild';
 
+import FeeChild from './FeeChild';
 
-
-const Feedback = () => {
+const Fee = () => {
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -45,7 +44,7 @@ const Feedback = () => {
             <Suspense fallback={<Loading/>}>
             <div>
                 <ToastContainer/>
-               <FeedbackChild/>
+                <FeeChild/>
             </div>
             </Suspense>
         )
@@ -59,4 +58,4 @@ const Feedback = () => {
     }
 }
 
-export default Feedback
+export default Fee

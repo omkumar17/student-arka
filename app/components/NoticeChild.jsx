@@ -53,7 +53,7 @@ const NoticeChild = () => {
             </div>
           ))
         ) : (
-          <p className="text-center text-gray-500 dark:text-gray-400">No notices available</p>
+          <p className="text-center text-black dark:text-white">No notices available</p>
         )}
       </div>
     </div>

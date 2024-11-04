@@ -1,5 +1,5 @@
 import localFont from "next/font/local";
-import "../globals.css";
+// import "../globals.css";
 
 import SessionWrapper from "../components/SessionWrapper";
 import Navbar from "../components/Navbar";
@@ -7,16 +7,16 @@ import { Suspense } from "react";
 import Loading from "../components/Loading";
 
 
-const geistSans = localFont({
-    src: "../fonts/GeistVF.woff",
-    variable: "--font-geist-sans",
-    weight: "100 900",
-});
-const geistMono = localFont({
-    src: "../fonts/GeistMonoVF.woff",
-    variable: "--font-geist-mono",
-    weight: "100 900",
-});
+// const geistSans = localFont({
+//     src: "../fonts/GeistVF.woff",
+//     variable: "--font-geist-sans",
+//     weight: "100 900",
+// });
+// const geistMono = localFont({
+//     src: "../fonts/GeistMonoVF.woff",
+//     variable: "--font-geist-mono",
+//     weight: "100 900",
+// });
 
 export const metadata = {
     title: "Login - BusArka",
@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         <SessionWrapper>
             <Navbar />
             <Suspense fallback={<Loading/>}>
-            <main className='relative  sm:pt-14  border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black'>
+            <main className='relative  pt-14  border-t-2 sm:border-t-0 h-[calc(100vh)] bg-white dark:bg-black'>
                 {children}
             </main>
             </Suspense>

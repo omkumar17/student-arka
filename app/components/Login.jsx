@@ -47,7 +47,9 @@ const Login = () => {
                 });
             }
         } catch (error) {
-            toast.error('An error occurred');
+            toast.error("Login Failed", {
+                style: { fontWeight: '900', color: 'black' },
+            });
         }
 
         setLoading(false);
@@ -59,7 +61,7 @@ const Login = () => {
     return (
         <div className='container mx-auto w-[100vw] flex justify-center items-center h-[100vh]'>
             <ToastContainer />
-            <div className="container h-[90vh] max-w-lg bg-white mx-auto pt-0  md:pt-10 p-10 flex flex-col justify-center items-center md:border-2 gap-5 md:gap-5 md:border-black rounded-3xl">
+            <div className="container h-[90vh] max-w-lg bg-white  mx-auto pt-0  md:pt-10 p-10 flex flex-col justify-center items-center md:border-2 gap-5 md:gap-5 md:border-black rounded-3xl">
                 <div className="logo">
                     <Image
                         src='/img/jgi.png'
@@ -82,15 +84,15 @@ const Login = () => {
                     />
                 </div>
                 <div className="heading">
-                    <h1 className="head text-3xl">Arka Bus Tracking</h1>
+                    <h1 className="head text-3xl text-black">Arka Bus Tracking</h1>
                 </div>
                 <div className="form w-full">
                     <form ref={formRef} onSubmit={handleSubmit} className='w-full flex flex-col justify-center items-center gap-5 md:gap-5'>
                         <div className="first-input w-full relative">
                             <input
                                 type="text"
-                                className="username w-full p-4 rounded-3xl placeholder:text-black placeholder:opacity-70 border-[1px] border-gray-700 focus:outline-none focus:ring-0 focus:border-0 focus:shadow-[0_0_0_4px] focus:shadow-yellow-400"
-                                placeholder='Username'
+                                className="username w-full p-4 text-black rounded-3xl placeholder:text-black placeholder:opacity-70 border-[1px] border-gray-700 focus:outline-none focus:ring-0 focus:border-0 focus:shadow-[0_0_0_4px] focus:shadow-yellow-400"
+                                placeholder='Enrollment'
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 disabled={loading}
@@ -107,7 +109,7 @@ const Login = () => {
                         <div className="sec-input w-full relative">
                             <input
                                 type={showPassword ? "text" : "password"}
-                                className="password w-full p-4 rounded-3xl placeholder:text-black placeholder:opacity-70 border-[1px] border-gray-700 focus:outline-none focus:ring-0 focus:border-0 focus:shadow-[0_0_0_4px] focus:shadow-yellow-400"
+                                className="password w-full p-4 text-black rounded-3xl placeholder:text-black placeholder:opacity-70 border-[1px] border-gray-700 focus:outline-none focus:ring-0 focus:border-0 focus:shadow-[0_0_0_4px] focus:shadow-yellow-400"
                                 placeholder='Password'
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -133,7 +135,7 @@ const Login = () => {
                             </button>
                         </div>
                         <div className="forgetPass w-full text-black flex flex-row justify-between">
-                            <Link href="#">Forgot Password?</Link>
+                            <Link href="/security/forgotPassword">Forgot Password?</Link>
                             <Link href="/otplogin">Sign in using OTP</Link>
                         </div>
                         <div className="gif">

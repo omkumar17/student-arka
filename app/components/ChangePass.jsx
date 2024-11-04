@@ -10,11 +10,11 @@ import Loading from './Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
-import FeedbackChild from './FeedbackChild';
+import ChangePassChild from './ChangePassChild';
 
 
 
-const Feedback = () => {
+const ChangePass = () => {
 
     const router = useRouter();
     const { data: session, status } = useSession();
@@ -45,7 +45,7 @@ const Feedback = () => {
             <Suspense fallback={<Loading/>}>
             <div>
                 <ToastContainer/>
-               <FeedbackChild/>
+               <ChangePassChild/>
             </div>
             </Suspense>
         )
@@ -59,4 +59,4 @@ const Feedback = () => {
     }
 }
 
-export default Feedback
+export default ChangePass
