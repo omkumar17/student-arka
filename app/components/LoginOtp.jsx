@@ -10,6 +10,7 @@ import Image from "next/image";
 
 const LoginOtp = () => {
   const [email, setEmail] = useState("");
+  const [enrollment, setEnrollment] = useState("");
   const [otp, setOtp] = useState("");
   const [systemOtp, setSystemOtp] = useState("");
   const [loading, setLoading] = useState(false); // Loading state for button
@@ -37,12 +38,12 @@ const LoginOtp = () => {
       const res = await fetch(`${process.env.NEXT_PUBLIC_IP}/StudentLoginOtp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, userType, otp, systemOtp }),
+        body: JSON.stringify({ enrollment, email, userType, otp, systemOtp }),
       });
 
       if (res.status === 200) {
         const generatedOtp = generateOTP();
-        
+
         try {
           const response = await fetch(`${process.env.NEXT_PUBLIC_IP}/send-email`, {
             method: 'POST',
@@ -50,6 +51,7 @@ const LoginOtp = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
+              enrollment,
               to: email,
               subject: 'OTP for Login to your account',
               text: `Hello,\n\nBelow is your OTP to Login to your account:\n${generatedOtp}\n\nDo not share this with anyone.`,
@@ -62,17 +64,25 @@ const LoginOtp = () => {
             toast.success("OTP sent successfully", {
               style: { fontWeight: "900", color: "black" },
             });
-          } else {
+          }
+         
+          else {
             toast.error("Error sending OTP", {
               style: { fontWeight: "900", color: "black" },
             });
           }
 
+
         } catch (error) {
           toast.error("An error occurred while sending OTP", { style: { fontWeight: '900', color: 'black' } });
         }
 
-      } else if (res.status === 201) {
+      } 
+      else if (res.status === 401) {
+        toast.error("Invalid Enrollment or Email", {
+          style: { fontWeight: "900", color: "black" },
+        });
+      }else if (res.status === 201) {
         toast.success("OTP verified", {
           style: { fontWeight: "900", color: "black" },
         });
@@ -105,6 +115,7 @@ const LoginOtp = () => {
 
         setSystemOtp("");
         setEmail("");
+        setEnrollment("");
         setOtp("");
         formRef.current.reset();
       } else if (res.status === 202) {
@@ -114,6 +125,7 @@ const LoginOtp = () => {
       } else {
         toast.error(res.statusText);
         setEmail("");
+        setEnrollment("");
         setOtp("");
         formRef.current.reset();
       }
@@ -121,6 +133,7 @@ const LoginOtp = () => {
       console.log("error", err.message);
       setOtp("");
       setEmail("");
+      setEnrollment("");
       setSystemOtp("");
       formRef.current.reset();
     } finally {
@@ -169,6 +182,16 @@ const LoginOtp = () => {
                   placeholder='Enter your email'
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="email-input w-full">
+                <input
+                  type="text"
+                  className="email w-full p-4 rounded-3xl text-black placeholder:text-black placeholder:opacity-70 border-[1px] border-gray-700 focus:outline-none focus:ring-0 focus:border-0 focus:shadow-[0_0_0_4px] focus:shadow-yellow-400"
+                  placeholder='Enter your Enrollment'
+                  value={enrollment}
+                  onChange={(e) => setEnrollment(e.target.value)}
                   required
                 />
               </div>

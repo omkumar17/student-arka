@@ -34,14 +34,14 @@ const ContactChild = () => {
   }, [enrollment]);
 
   return (
-    <div className="p-4 h-[90vh] container mx-auto">
+    <div className="p-4 my-10 h-[90vh] container mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center ">Emergency Contacts</h1>
 
       {/* Contacts Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full shadow-md rounded-lg border-4">
+        <table className="min-w-full shadow-md rounded-lg border-2">
           <thead>
-            <tr className="border-4">
+            <tr className="border-2">
               <th className="py-3 px-5 text-left font-semibold ">Name</th>
               <th className="py-3 px-5 text-left font-semibold ">Designation</th>
               <th className="py-3 px-5 text-left font-semibold ">Contact</th>
@@ -50,7 +50,7 @@ const ContactChild = () => {
           <tbody> 
             {contacts.length > 0 ? (
               contacts.map((contact, index) => (
-                <tr key={index} className="border-4  ">
+                <tr key={index} className="border-2  ">
                   <td className="py-3 px-5 ">{contact.name}</td>
                   <td className="py-3 px-5 ">{contact.designation}</td>
                   <td className="py-3 px-5 text-blue-600 dark:text-blue-400">

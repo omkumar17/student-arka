@@ -22,8 +22,8 @@ const FeeChild = () => {
           body: JSON.stringify({ enrollment }), // Send enrollment data
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch fee data");
+        if (response.status===404) {
+          throw new Error("No Data available for this enrollment");
         }
 
         const data = await response.json();
@@ -46,7 +46,7 @@ const FeeChild = () => {
   );
 
   return (
-    <div className="p-4 h-[90vh] container mx-auto">
+    <div className="p-4 my-10 h-[90vh] container mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-center ">Fee Details</h1>
 
       {/* Search Box */}
@@ -57,45 +57,45 @@ const FeeChild = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="space-y-4 h-[calc(100vh-12rem)] flex flex-row flex-wrap  overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700">
+        <div className="space-y-4 flex flex-row flex-wrap items-center justify-center overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700">
           {filteredFees.length > 0 ? (
             filteredFees.map((fee) => (
-              <div key={fee.id} className="border w-full md:min-w-md md:max-w-md  p-4 rounded shadow">
+              <div key={fee.id} className="border flex flex-col gap-2 p-6 rounded shadow">
                 <h2 className="text-lg font-semibold ">
                   <span className="bg-green-600 p-2 rounded-lg">Enrollment: {fee.enrollment}</span>
                 </h2>
                 <br />
-                <p className="my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">RFID:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.rfid || 'Not set'}</span>
+                <p className="">
+                  <strong className="mr-10 text-blue-600">RFID:</strong>
+                  <span className=" w-full ">{fee.rfid || 'Not set'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Amount:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.amount || 'N/A'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Amount:</strong>
+                  <span className=" w-full ">{fee.amount || 'N/A'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Transaction ID:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.transactionId || 'Not set'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Transaction ID:</strong>
+                  <span className=" w-full ">{fee.transactionId || 'Not set'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Payment Method:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.method || 'Not set'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Payment Method:</strong>
+                  <span className=" w-full ">{fee.method || 'Not set'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Status:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.status || 'N/A'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Status:</strong>
+                  <span className=" w-full ">{fee.status || 'N/A'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Date:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.date || 'Not set'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Date:</strong>
+                  <span className=" w-full ">{fee.date || 'Not set'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Session:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg">{fee.session || 'Not set'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Session:</strong>
+                  <span className=" w-full ">{fee.session || 'Not set'}</span>
                 </p>
-                <p className="capitalize my-5">
-                  <strong className="mr-10 bg-blue-500 p-2 rounded-lg">Branch:</strong>
-                  <span className="border-2 py-2 w-full px-10 rounded-lg uppercase">{fee.branch || 'Not set'}</span>
+                <p className="capitalize ">
+                  <strong className="mr-10 text-blue-600">Branch:</strong>
+                  <span className=" w-full  uppercase">{fee.branch || 'Not set'}</span>
                 </p>
               </div>
             ))

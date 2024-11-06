@@ -37,7 +37,7 @@ const DashboardChild = () => {
   );
 
   return (
-    <div className="p-4 h-[90vh] container mx-auto">
+    <div className="p-4 my-10 h-[90vh] container mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-center ">Bus List</h1>
       
       {/* Search Box */}
@@ -46,7 +46,7 @@ const DashboardChild = () => {
         placeholder="Search buses by bus number, or destination"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        className="w-full p-2 mb-4 border-4  border-blue-600 rounded"
+        className="w-full p-2 mb-4 dark:border-2 border-4 bg-transparent border-blue-600 rounded"
       />
 
       {loading ? (
@@ -54,17 +54,17 @@ const DashboardChild = () => {
       ) : error ? (
         <p className="text-red-500">{error}</p>
       ) : (
-        <div className="space-y-4 h-[calc(100vh-12rem)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700">
+        <div className=" flex flex-row flex-wrap gap-6  justify-center items-center overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent scrollbar-thumb-rounded-full hover:scrollbar-thumb-gray-700">
           {filteredBuses.length > 0 ? (
             filteredBuses.map((bus) => (
-              <div key={bus.id} className="border p-4 rounded shadow ">
-                <h2 className="text-lg font-semibold   "><span className="bg-green-600 p-2 rounded-lg">Bus Number: {bus.bus_no}</span></h2><br/>
+              <div key={bus.id} className="border-2 md:p-6 p-10 rounded shadow ">
+                <h2 className="text-lg font-semibold   "><span className="bg-green-800 p-2 text-white rounded-lg">Bus Number: {bus.bus_no}</span></h2><br/>
                 {/* <p className=' '><strong className=' '>ID:</strong> {bus.id}</p> */}
-                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Destination:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.destination || 'Not set'}</span></p>
-                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Seat Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.seatCount || 'Not set'}</span></p>
-                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>People Count:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.peopleCount || 'N/A'}</span></p>
-                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Longitude:</strong> <span className="border-2 py-2 w-full px-10 rounded-lg">{bus.longitude || 'Not set'}</span></p>
-                <p className='  capitalize my-5'><strong className='  mr-10 bg-blue-500 p-2 rounded-lg'>Latitude</strong><span className="border-2 py-2 w-full px-10 rounded-lg">{bus.latitude || 'Not set'}</span></p>
+                <p className='  capitalize text-lg'><strong className='text-blue-700 font-bold  mr-10 '>Destination:</strong> <span className="w-full">{bus.destination || 'Not set'}</span></p>
+                <p className='  capitalize text-lg'><strong className='text-blue-700 font-bold  mr-10 '>Seat Count:</strong> <span className="w-full">{bus.seatCount || 'Not set'}</span></p>
+                <p className='  capitalize text-lg'><strong className='text-blue-700 font-bold  mr-10 '>People Count:</strong> <span className="w-full">{bus.peopleCount || 'N/A'}</span></p>
+                <p className='  capitalize text-lg'><strong className='text-blue-700 font-bold  mr-10 '>Longitude:</strong> <span className="w-full">{bus.longitude || 'Not set'}</span></p>
+                <p className='  capitalize text-lg'><strong className='text-blue-700 font-bold  mr-10 '>Latitude</strong><span className="w-full">{bus.latitude || 'Not set'}</span></p>
               </div>
             ))
           ) : (

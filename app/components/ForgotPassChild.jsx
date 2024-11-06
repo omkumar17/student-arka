@@ -14,6 +14,7 @@ import eyeOffIcon from '/public/img/eye.png'; // Adjust the path as needed
 const ForgotPassChild = () => {
     const [step, setStep] = useState(1); // Step 1: Email & OTP, Step 2: Verify OTP, Step 3: Change Password
     const [email, setEmail] = useState('');
+    const [enrollment, setEnrollment] = useState('');
     const [otp, setOtp] = useState('');
     const [userOtp, setUserOtp] = useState('');
     const [isOtpSent, setIsOtpSent] = useState(false);
@@ -37,6 +38,7 @@ const ForgotPassChild = () => {
     const handleSendOtp = async (e) => {
         e.preventDefault();
         setLoading(true);
+        
         const generatedOtp = generateOtp(); // Generate a 6-digit OTP
         setOtp(generatedOtp); // Store OTP for further verification
 
@@ -47,6 +49,7 @@ const ForgotPassChild = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    enrollment,
                     to: email,
                     subject: 'OTP for changing your password',
                     text: `Hello ${session?.user?.firstName},\n\nBelow is your OTP to change your password:\n${generatedOtp}\n\nDo not share this with anyone.`,
@@ -58,7 +61,10 @@ const ForgotPassChild = () => {
                 toast.success("OTP sent to your email", { style: { fontWeight: '900', color: 'black' } });
                 setIsOtpSent(true);
                 setStep(2); // Move to OTP verification step
-            } else {
+            } else if(response.status===404){
+                toast.error("Enter correct details", { style: { fontWeight: '900', color: 'black' } });
+            }
+            else {
                 toast.error(data.message || "Failed to send OTP", { style: { fontWeight: '900', color: 'black' } });
             }
         } catch (error) {
@@ -103,7 +109,7 @@ const ForgotPassChild = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, newPassword, forgot }),
+                body: JSON.stringify({ enrollment,email, newPassword, forgot }),
             });
             const data = await response.json();
 
@@ -133,6 +139,15 @@ const ForgotPassChild = () => {
                                 placeholder="Enter your email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                disabled={loading}
+                                required
+                            />
+                            <input
+                                type="text"
+                                className="w-full p-4 rounded-3xl text-black placeholder:text-black border-2 border-gray-700"
+                                placeholder="Enter your Enrollment"
+                                value={enrollment}
+                                onChange={(e) => setEnrollment(e.target.value)}
                                 disabled={loading}
                                 required
                             />
