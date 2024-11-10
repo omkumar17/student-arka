@@ -65,13 +65,10 @@ const FeeChild = () => {
                   <span className="bg-green-600 p-2 rounded-lg">Enrollment: {fee.enrollment}</span>
                 </h2>
                 <br />
-                <p className="">
-                  <strong className="mr-10 text-blue-600">RFID:</strong>
-                  <span className=" w-full ">{fee.rfid || 'Not set'}</span>
-                </p>
+               
                 <p className="capitalize ">
                   <strong className="mr-10 text-blue-600">Amount:</strong>
-                  <span className=" w-full ">{fee.amount || 'N/A'}</span>
+                  <span className=" w-full ">Rs. {fee.amount || 'N/A'}</span>
                 </p>
                 <p className="capitalize ">
                   <strong className="mr-10 text-blue-600">Transaction ID:</strong>

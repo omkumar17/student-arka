@@ -29,12 +29,30 @@ const LogsChild = () => {
     fetchLogs();
   }, [enrollment]);
 
-  useEffect(()=>{
-    console.log("logs",logs);
-  },[logs])
+  useEffect(() => {
+    console.log("logs", logs);
+  }, [logs])
 
   // Extracting general information
- 
+
+  function formatTimeTo24Hour(time) {
+    console.log("time", time);
+    // Check if the time includes 'Z' and remove it if necessary
+    if(time){
+    if ( time.endsWith('Z')) {
+      time = time.slice(0, -1);
+    }
+  
+    // Extract only the hours and minutes (ignoring seconds)
+    const [hour, minute] = time.split(':');
+    return `${hour}:${minute}`;
+  }
+  else{
+    return null;
+  }
+  }
+  
+
   return (
     <div>
       <h1 className="heading   text-2xl text-center  my-10 font-bold">Your Bus Logs</h1>
@@ -43,7 +61,7 @@ const LogsChild = () => {
       <div className="mb-5 container mx-auto text-lg   flex flex-col gap-3">
         <p className='font-bold'><strong className='text-blue-600  rounded-lg p-2 m-2'>Enrollment : </strong><span className=" mx-2 "> {logs.enrollment || session?.user?.enrollment}</span></p>
         {/* <p className=''><strong className='text-blue-600  rounded-lg p-2 m-2'>RFID : </strong> <span className="bg-blue-600 p-2 rounded-lg mx-2 ">{logs.rfid || 'no records'}</span></p> */}
-        <p className='font-bold'><strong className='text-blue-600  rounded-lg p-2 m-2'>Current Bus : </strong><span className=" mx-2 "> {logs.current||'You are not in a bus'}</span></p>
+        <p className='font-bold'><strong className='text-blue-600  rounded-lg p-2 m-2'>Current Bus : </strong><span className=" mx-2 "> {logs.current || 'You are not in a bus'}</span></p>
         <p className='font-bold'><strong className='text-blue-600  rounded-lg p-2 m-2'>Status : </strong> <span className="capitalize mx-2 ">{logs.status || 'no records'}</span></p>
       </div>
 
@@ -63,12 +81,12 @@ const LogsChild = () => {
           <tbody>
             {logs.logs && logs.logs.length > 0 ? (
               logs.logs.map((log, index) => (
-                <tr key={index} className=" border-2">
+                <tr key={index} className="border-2">
                   <td className="px-6 py-4">{log.busno}</td>
                   <td className="px-6 py-4">{log.board.date}</td>
-                  <td className="px-6 py-4">{log.board.time}</td>
+                  <td className="px-6 py-4">{formatTimeTo24Hour(log.board.time)}</td>
                   <td className="px-6 py-4">{log.left.date}</td>
-                  <td className="px-6 py-4">{log.left.time}</td>
+                  <td className="px-6 py-4">{formatTimeTo24Hour(log.left.time)}</td>
                 </tr>
               ))
             ) : (
