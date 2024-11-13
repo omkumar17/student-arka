@@ -54,8 +54,8 @@ const LogsChild = () => {
   
 
   return (
-    <div>
-      <h1 className="heading   text-2xl text-center  my-10 font-bold">Your Bus Logs</h1>
+    <div className='overflow-auto my-10 h-[calc(90vh-2.5rem)]'>
+      <h1 className="heading   text-2xl text-center font-bold">Your Bus Logs</h1>
 
       {/* General Information Section */}
       <div className="mb-5 container mx-auto text-lg   flex flex-col gap-3">

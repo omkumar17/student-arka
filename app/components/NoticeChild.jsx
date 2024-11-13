@@ -47,8 +47,8 @@ const NoticeChild = () => {
             <div key={index} className=" shadow-lg rounded-lg p-6 border dark:border-gray-700">
               <div className="mb-4">
                 <p className="  text-lg my-4 border-2 py-10 px-5 rounded-lg border-blue-600"> {notice.content}</p>
-                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Created At:</strong> {notice.createdAt}</p>
-                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 rounded-lg'>Time:</strong> {notice.createdTime}</p>
+                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 text-white rounded-lg'>Created At:</strong> {notice.createdAt}</p>
+                <p className="  my-4 text-md"><strong className='bg-blue-600 p-2 text-white rounded-lg'>Time:</strong> {notice.createdTime}</p>
               </div>
             </div>
           ))

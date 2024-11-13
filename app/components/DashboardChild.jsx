@@ -52,7 +52,8 @@ const DashboardChild = () => {
   }
 
   return (
-    <div className="p-4 my-10 h-[90vh] container mx-auto">
+    <div className="overflow-auto my-10 h-[calc(90vh-2.5rem)]">
+    <div className="p-4  container mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-center">Bus List</h1>
       
       {/* Search Box */}
@@ -109,6 +110,7 @@ const DashboardChild = () => {
           )}
         </div>
       )}
+    </div>
     </div>
   );
 };

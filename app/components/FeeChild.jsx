@@ -46,7 +46,7 @@ const FeeChild = () => {
   );
 
   return (
-    <div className="p-4 my-10 h-[90vh] container mx-auto">
+    <div className="p-4 overflow-auto my-10 h-[calc(90vh-2.5rem)] container mx-auto">
       <h1 className="text-2xl font-bold mb-4 text-center ">Fee Details</h1>
 
       {/* Search Box */}
@@ -62,7 +62,7 @@ const FeeChild = () => {
             filteredFees.map((fee) => (
               <div key={fee.id} className="border flex flex-col gap-2 p-6 rounded shadow">
                 <h2 className="text-lg font-semibold ">
-                  <span className="bg-green-600 p-2 rounded-lg">Enrollment: {fee.enrollment}</span>
+                  <span className="bg-green-600 text-white p-2 rounded-lg">Enrollment: {fee.enrollment}</span>
                 </h2>
                 <br />
                
