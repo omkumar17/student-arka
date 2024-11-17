@@ -70,19 +70,30 @@ export const MapChild = (id) => {
     return (
         <div className='mt-10 z-1'>
             
-            <h1>Bus Location {busId ? `for GPS ID: ${busId}` : ''}</h1>
+            <h1>Bus Location {busId ? `for BUS REG No: ${busId}` : ''}</h1>
             {latitude && longitude ? (
-                <MapContainer center={[22.8046, 86.2029]} zoom={15} style={{ height: '500px', width: '100%' }} className='z-0'>
-                    <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                    {busIcon && (
-                        <Marker position={[latitude, longitude]} icon={busIcon}>
-                            <Popup>Bus Location</Popup>
-                        </Marker>
-                    )}
-                </MapContainer>
+                // <MapContainer center={[22.8046, 86.2029]} zoom={15} style={{ height: '500px', width: '100%' }} className='z-0'>
+                //     <TileLayer
+                //         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                //         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                //     />
+                //     {busIcon && (
+                //         <Marker position={[latitude, longitude]} icon={busIcon}>
+                //             <Popup>Bus Location</Popup>
+                //         </Marker>
+                //     )}
+                // </MapContainer>
+
+            // add google map ifrmae for this link show amp using latitude,longitude
+             <iframe
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    style={{ border: 0 }}
+                    src={`https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`}
+                    allowFullScreen
+                ></iframe>
+            
             ) : (
                 <p>Please provide latitude and longitude.</p>
             )}
