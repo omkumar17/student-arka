@@ -99,7 +99,7 @@ const DashboardChild = () => {
                   <span className="w-full">{bus.peopleCount || 'N/A'}</span>
                 </p>
                 <div className="flex items-center justify-center">
-                  <button onClick={(e) => handleClick(e, bus.reg_no, bus.latitude)} disabled={!bus.latitude} className="location p-2 bg-blue-600 text-white rounded-3xl mt-5">
+                  <button onClick={(e) => handleClick(e, bus.reg_no)} disabled={!bus.latitude} className="location p-2 bg-blue-600 text-white rounded-3xl mt-5">
                     View Location
                   </button>
                 </div>
